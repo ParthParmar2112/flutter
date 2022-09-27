@@ -23,7 +23,7 @@ class MyScreen extends StatefulWidget {
 }
 
 class _MyScreenState extends State<MyScreen> {
-  String _hj ='';
+  String _pk ='';
   String _temptxt1 ='';
   String _temptxt2 ='';
   @override
@@ -54,7 +54,7 @@ class _MyScreenState extends State<MyScreen> {
               _updateContent2(text2);   //call the method update content
             },
           ),
-          Text(_hj+"\n",style: TextStyle(
+          Text(_pk+"\n",style: TextStyle(
             fontSize: 15,
             // backgroundColor: Colors.black,
             color: Colors.red,
@@ -103,32 +103,32 @@ class _MyScreenState extends State<MyScreen> {
         double c1 = double.parse(_temptxt1);
         double c2 = double.parse(_temptxt2);
         double c = (c1+c2);
-        _hj = c.toString();
-        _hj = "\nADDITION IS : $_hj";
+        _pk = c.toString();
+        _pk = "\nADDITION IS : $_pk";
       }
       else if(check == 2)
       {
         double c1 = double.parse(_temptxt1);
         double c2 = double.parse(_temptxt2);
         double c = (c1-c2);
-        _hj = c.toString();
-        _hj = "\nSUBTRACTION IS : $_hj";
+        _pk = c.toString();
+        _pk = "\nSUBTRACTION IS : $_pk";
       }
       else if(check == 3)
       {
         double c1 = double.parse(_temptxt1);
         double c2 = double.parse(_temptxt2);
         double c = (c1*c2);
-        _hj = c.toString();
-        _hj = "\nMULTIPLICAITON IS : $_hj";
+        _pk = c.toString();
+        _pk = "\nMULTIPLICAITON IS : $_pk";
       }
       else
       {
         double c1 = double.parse(_temptxt1);
         double c2 = double.parse(_temptxt2);
         double c = (c1/c2);
-        _hj = c.toString();
-        _hj = "\nDIVISION IS : $_hj";
+        _pk = c.toString();
+        _pk = "\nDIVISION IS : $_pk";
       }
     });
   }
