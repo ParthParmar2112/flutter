@@ -1,0 +1,115 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const MyScreen();
+  }
+}
+
+class MyScreen extends StatefulWidget {
+  const MyScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MyScreen> createState() => _MyScreenState();
+}
+
+class _MyScreenState extends State<MyScreen> {
+  int counter = 0;
+  void initState() {
+    get();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'PARTH',
+      theme: ThemeData(primarySwatch: Colors.cyan), //theme of app
+      home: Scaffold(
+        //scaffold
+        appBar: AppBar(
+          //appbar for show scaffold title
+          title: const Text('PARTH'),
+          centerTitle: true,
+          toolbarHeight: 44,
+        ),
+        body: Column(
+          children: [
+            Center(
+              heightFactor: 30,
+              child: Text(
+                "COUNTER : $counter",
+                style: const TextStyle(
+                  color: Colors.blue,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  fontStyle: FontStyle.italic,
+                  fontFamily: 'Times New Roman',
+                ),
+              ),
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                ),
+                onPressed: () {
+                  add();
+                  print("ADD+1");
+                },
+                child: Text(
+                  "+",
+                  style: TextStyle(fontSize: 40, color: Colors.white),
+                )),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: CircleBorder(),
+                ),
+                onPressed: () {
+                  sub();
+                  print("-");
+                },
+                child: Text(
+                  "-",
+                  style: TextStyle(fontSize: 40, color: Colors.white),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void add() async {
+    var pref = await SharedPreferences.getInstance();
+    pref.setInt('counter', counter + 1);
+    setState(() {
+      counter += 1;
+    });
+  }
+
+  void sub() async {
+    var pref = await SharedPreferences.getInstance();
+    pref.setInt('counter', counter - 1);
+    setState(() {
+      counter -= 1;
+    });
+  }
+
+  void get() async {
+    var pref = await SharedPreferences.getInstance();
+    final int? count = pref.getInt('counter');
+    if (count == null) {
+      pref.setInt('counter', 0);
+    }
+    print(count);
+    setState(() {
+      counter = count!;
+    });
+  }
+}
